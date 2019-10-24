@@ -1,10 +1,22 @@
 package com.codeclan.coursebookings.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "bookings")
 public class Booking {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "date")
     private String date;
+
+    @Column(name = "customer_id")
     private Long customerId;
+
+    @Column(name = "course_id")
     private Long courseId;
 
     public Booking(String date) {
