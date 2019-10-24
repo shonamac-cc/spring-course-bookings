@@ -19,16 +19,16 @@ public class CustomerController {
 
     @GetMapping(value = "/course/{courseId}")
     public List<Customer> findCustomerByCourse(@PathVariable Long courseId){
-        return customerRepository.findCustomerByCourse(courseId);
+        return customerRepository.findCustomerByCourseIgnoreCase(courseId);
     }
 
     @GetMapping(value = "/courseandtown/{town}/{courseId}")
     public List<Customer>findCustomerByTownAndCourse(@PathVariable String town,@PathVariable Long courseId){
-        return customerRepository.findCustomerByTownAndCourse(town, courseId);
+        return customerRepository.findCustomerByTownAndCourseIgnoreCase(town, courseId);
     }
 
     @GetMapping(value = "/ageandtownandcourse/{age}/{town}/{courseId}")
     public List<Customer> findCustomersOverCertainAgeByTownAndCourse(@PathVariable int age, @PathVariable String town, @PathVariable Long courseId){
-        return customerRepository.findCustomersOverCertainAgeByTownAndCourse(age, town, courseId);
+        return customerRepository.findCustomersOverCertainAgeByTownAndCourseIgnoreCase(age, town, courseId);
     }
 }

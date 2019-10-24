@@ -16,7 +16,7 @@ public class CustomerRepositoryImpl implements CustomerRepositoryCustom{
     EntityManager entityManager;
 
     @Transactional
-    public List<Customer> findCustomerByCourse(Long courseId){
+    public List<Customer> findCustomerByCourseIgnoreCase(Long courseId){
         List<Customer> result = null;
         Session session = entityManager.unwrap(Session.class);
 
@@ -34,13 +34,13 @@ public class CustomerRepositoryImpl implements CustomerRepositoryCustom{
     }
 
     @Transactional
-    public List<Customer>findCustomerByTownAndCourse(String town, Long courseId){
+    public List<Customer>findCustomerByTownAndCourseIgnoreCase(String town, Long courseId){
         List<Customer> result = null;
         Session session = entityManager.unwrap(Session.class);
 
         try{
             Criteria criteria = session.createCriteria(Customer.class);
-            criteria.add(Restrictions.eq("town", town));
+            criteria.add(Restrictions.eq("town", town.toLowerCase()));
             criteria.createAlias("bookings", "bookingsAlias");
             criteria.add(Restrictions.eq("bookingsAlias.course.id", courseId ));
             result = criteria.list();
@@ -54,14 +54,14 @@ public class CustomerRepositoryImpl implements CustomerRepositoryCustom{
     }
 
     @Transactional
-    public List<Customer> findCustomersOverCertainAgeByTownAndCourse(int age, String town, Long courseId){
+    public List<Customer> findCustomersOverCertainAgeByTownAndCourseIgnoreCase(int age, String town, Long courseId){
         List<Customer> result = null;
         Session session = entityManager.unwrap(Session.class);
 
         try{
             Criteria criteria = session.createCriteria(Customer.class);
             criteria.add(Restrictions.gt("age", age));
-            criteria.add(Restrictions.eq("town", town));
+            criteria.add(Restrictions.eq("town", town.toLowerCase()));
             criteria.createAlias("bookings", "bookingsAlias");
             criteria.add(Restrictions.eq("bookingsAlias.course.id", courseId));
             result = criteria.list();

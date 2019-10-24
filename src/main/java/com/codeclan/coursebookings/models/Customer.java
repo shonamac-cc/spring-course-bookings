@@ -28,8 +28,8 @@ public class Customer {
     private List<Booking> bookings;
 
     public Customer(String name, String town, int age) {
-        this.name = name;
-        this.town = town;
+        this.name = name.toLowerCase();
+        this.town = town.toLowerCase();
         this.age = age;
         this.bookings = new ArrayList<>();
     }

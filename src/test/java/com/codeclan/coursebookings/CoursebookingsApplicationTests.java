@@ -45,7 +45,7 @@ class CoursebookingsApplicationTests {
 
 	@Test
 	public void canFindAllCustomersByCourse(){
-		List<Customer> foundCustomers = customerRepository.findCustomerByCourse(1L);
+		List<Customer> foundCustomers = customerRepository.findCustomerByCourseIgnoreCase(1L);
 		assertEquals(2, foundCustomers.size());
 	}
 
@@ -57,13 +57,13 @@ class CoursebookingsApplicationTests {
 
 	@Test
 	public void canFindCustomersByTownAndCourse(){
-		List<Customer> foundCustomers = customerRepository.findCustomerByTownAndCourse("Edinburgh", 1L);
+		List<Customer> foundCustomers = customerRepository.findCustomerByTownAndCourseIgnoreCase("Edinburgh", 1L);
 		assertEquals(2, foundCustomers.size());
 	}
 
 	@Test
 	public void canFindCustomersByAgeAndCourse(){
-		List<Customer> foundCustomers = customerRepository.findCustomersOverCertainAgeByTownAndCourse(55, "Edinburgh", 1L);
+		List<Customer> foundCustomers = customerRepository.findCustomersOverCertainAgeByTownAndCourseIgnoreCase(55, "Edinburgh", 1L);
 		assertEquals(1, foundCustomers.size());
 	}
 }
