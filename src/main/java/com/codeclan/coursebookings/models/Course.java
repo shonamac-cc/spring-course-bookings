@@ -23,7 +23,7 @@ public class Course {
     @Column(name = "star_rating")
     private int starRating;
 
-    @JsonIgnoreProperties("course")
+    @JsonIgnoreProperties("courses")
     @OneToMany(mappedBy = "course")
     private List<Booking> bookings;
 
