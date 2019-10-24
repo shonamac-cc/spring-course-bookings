@@ -54,4 +54,16 @@ class CoursebookingsApplicationTests {
 		List<Course> foundCourses = courseRepository.findAllCoursesByCustomer(1L);
 		assertEquals(1, foundCourses.size());
 	}
+
+	@Test
+	public void canFindCustomersByTownAndCourse(){
+		List<Customer> foundCustomers = customerRepository.findCustomerByTownAndCourse("Edinburgh", 1L);
+		assertEquals(2, foundCustomers.size());
+	}
+
+	@Test
+	public void canFindCustomersByAgeAndCourse(){
+		List<Customer> foundCustomers = customerRepository.findCustomersOverCertainAgeByTownAndCourse(55, "Edinburgh", 1L);
+		assertEquals(1, foundCustomers.size());
+	}
 }
