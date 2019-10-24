@@ -15,13 +15,13 @@ public class Booking {
     @Column(name = "date")
     private String date;
 
-    @ManyToOne
     @JsonIgnoreProperties("bookings")
+    @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @ManyToOne
     @JsonIgnoreProperties("bookings")
+    @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
 
@@ -65,5 +65,9 @@ public class Booking {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public String getCourseName(){
+        return this.course.getName();
     }
 }

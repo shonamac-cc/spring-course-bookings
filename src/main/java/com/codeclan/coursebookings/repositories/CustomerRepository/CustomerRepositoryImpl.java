@@ -4,6 +4,7 @@ import com.codeclan.coursebookings.models.Customer;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -40,7 +41,7 @@ public class CustomerRepositoryImpl implements CustomerRepositoryCustom{
 
         try{
             Criteria criteria = session.createCriteria(Customer.class);
-            criteria.add(Restrictions.eq("town", town.toLowerCase()));
+            criteria.add(Restrictions.ilike("town", town, MatchMode.EXACT));
             criteria.createAlias("bookings", "bookingsAlias");
             criteria.add(Restrictions.eq("bookingsAlias.course.id", courseId ));
             result = criteria.list();
@@ -61,7 +62,7 @@ public class CustomerRepositoryImpl implements CustomerRepositoryCustom{
         try{
             Criteria criteria = session.createCriteria(Customer.class);
             criteria.add(Restrictions.gt("age", age));
-            criteria.add(Restrictions.eq("town", town.toLowerCase()));
+            criteria.add(Restrictions.ilike("town", town, MatchMode.EXACT));
             criteria.createAlias("bookings", "bookingsAlias");
             criteria.add(Restrictions.eq("bookingsAlias.course.id", courseId));
             result = criteria.list();
